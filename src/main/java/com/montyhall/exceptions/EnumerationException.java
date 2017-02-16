@@ -1,4 +1,4 @@
-package com.helloWorld.exceptions;
+package com.montyhall.exceptions;
 
 public class EnumerationException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-package com.helloWorld.config;
+package com.montyhall.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @SpringBootApplication
-@ComponentScan(value = "com.helloWorld")
+@ComponentScan(value = "com.montyhall")
 public class MainApplication {
 
 

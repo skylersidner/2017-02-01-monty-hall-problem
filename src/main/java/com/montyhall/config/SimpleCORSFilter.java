@@ -1,4 +1,4 @@
-package com.helloWorld.config;
+package com.montyhall.config;
 
 import java.io.IOException;
 import javax.servlet.Filter;

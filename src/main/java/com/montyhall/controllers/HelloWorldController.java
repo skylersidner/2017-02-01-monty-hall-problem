@@ -1,4 +1,4 @@
-package com.helloWorld.controllers;
+package com.montyhall.controllers;
 
 import javax.inject.Inject;
 import javax.ws.rs.core.MediaType;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.helloWorld.domain.HelloWorldDomainService;
+import com.montyhall.domain.HelloWorldDomainService;
 
 @RestController
 @RequestMapping("/helloworld")

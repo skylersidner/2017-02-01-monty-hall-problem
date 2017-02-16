@@ -1,4 +1,4 @@
-package com.helloWorld.config;
+package com.montyhall.config;
 
 import java.net.URI;
 import java.net.URISyntaxException;

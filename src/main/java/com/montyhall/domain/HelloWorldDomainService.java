@@ -1,4 +1,4 @@
-package com.helloWorld.domain;
+package com.montyhall.domain;
 
 public interface HelloWorldDomainService {
 

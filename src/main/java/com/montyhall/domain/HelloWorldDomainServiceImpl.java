@@ -1,9 +1,9 @@
-package com.helloWorld.domain;
+package com.montyhall.domain;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.helloWorld.infrastructure.HelloWorldDaoServiceImpl;
+import com.montyhall.infrastructure.HelloWorldDaoServiceImpl;
 
 @Named
 public class HelloWorldDomainServiceImpl implements HelloWorldDomainService {
