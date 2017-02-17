@@ -27,7 +27,7 @@ public class HomeController {
 	public String get3doorStayResult() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
 		template.setNumberOfDoors(3);
-		template.setSwapping(true);
+		template.setSwapping(false);
 		template.setNumberOfRounds(1);
 		
 		String message = "Aww, I'm sorry!  You lost!";
@@ -42,7 +42,7 @@ public class HomeController {
 	public String get3doorStay100Result() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
 		template.setNumberOfDoors(3);
-		template.setSwapping(true);
+		template.setSwapping(false);
 		template.setNumberOfRounds(100);
 		
 		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
@@ -54,7 +54,7 @@ public class HomeController {
 	public String get3doorSwapResult() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
 		template.setNumberOfDoors(3);
-		template.setSwapping(false);
+		template.setSwapping(true);
 		template.setNumberOfRounds(1);
 		
 		String message = "Aww, I'm sorry!  You lost!";

@@ -1,5 +1,7 @@
 package com.montyhall.domain;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.inject.Named;
@@ -19,17 +21,15 @@ public class DecisionEngineDomainServiceImpl implements DecisionEngineDomainServ
 		for (int x = 0; x < template.getNumberOfRounds(); x++) {
 			//get random number for prizeDoor
 			//int between 1 and numberOfDoors, inclusive;
-			int prizeDoor = ThreadLocalRandom.current().nextInt(1, template.getNumberOfDoors() + 1);
+			int prizeDoor = ThreadLocalRandom.current().nextInt(1, (template.getNumberOfDoors() + 1));
 		
 			//get random number for choiceDoor
 			//same randomizer condition as prizeDoor
-			int choiceDoor = ThreadLocalRandom.current().nextInt(1, template.getNumberOfDoors() + 1);
+			int choiceDoor = ThreadLocalRandom.current().nextInt(1, (template.getNumberOfDoors() + 1));
 		
-			//get random number for closedDoor
-			//same randomizer condition as prizeDoor, cannot be same as choiceDoor
 			int closedDoor = 0;
-			while (closedDoor != choiceDoor) {
-				closedDoor = ThreadLocalRandom.current().nextInt(1, template.getNumberOfDoors() + 1);
+			if (choiceDoor != prizeDoor) {
+				closedDoor = prizeDoor;
 			}
 		
 			//set choiceDoor based on isSwapping
@@ -38,7 +38,7 @@ public class DecisionEngineDomainServiceImpl implements DecisionEngineDomainServ
 			}
 		
 			//determine if player wins and increment
-		 	if (choiceDoor == prizeDoor || choiceDoor == closedDoor) {
+		 	if (choiceDoor == prizeDoor) {
 			   numberOfWins++;
 			}
 		}
