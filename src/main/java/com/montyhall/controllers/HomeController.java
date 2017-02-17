@@ -50,6 +50,19 @@ public class HomeController {
 		return message;
 	}
 	
+
+	@RequestMapping(value="/3doorStay1000", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
+	public String get3doorStay1000Result() {
+		DecisionEngineTemplate template = new DecisionEngineTemplate();
+		template.setNumberOfDoors(3);
+		template.setSwapping(false);
+		template.setNumberOfRounds(1000);
+		
+		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
+		String message = "You won " + result + " times out of 1000!";
+		return message;
+	}
+	
 	@RequestMapping(value="/3doorSwap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
 	public String get3doorSwapResult() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
@@ -77,5 +90,73 @@ public class HomeController {
 		return message;
 
 	}
+	
+	@RequestMapping(value="/3doorSwap1000", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
+	public String get3doorSwap1000Result() {
+		DecisionEngineTemplate template = new DecisionEngineTemplate();
+		template.setNumberOfDoors(3);
+		template.setSwapping(true);
+		template.setNumberOfRounds(1000);
+		
+		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
+		String message = "You won " + result + " times out of 1000!";
+		return message;
 
+	}
+	
+	@RequestMapping(value="/100doorStay", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
+	public String get100doorStayResult() {
+		DecisionEngineTemplate template = new DecisionEngineTemplate();
+		template.setNumberOfDoors(100);
+		template.setSwapping(false);
+		template.setNumberOfRounds(1);
+		
+		String message = "Aww, I'm sorry!  You lost!";
+		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
+		if (result == 1) {
+			message = "Congratulations!  You won!";
+		}
+		return message;
+	}
+	
+
+	@RequestMapping(value="/100doorStay1000", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
+	public String get100doorStay1000Result() {
+		DecisionEngineTemplate template = new DecisionEngineTemplate();
+		template.setNumberOfDoors(100);
+		template.setSwapping(false);
+		template.setNumberOfRounds(1000);
+		
+		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
+		String message = "You won " + result + " times out of 1000!";
+		return message;
+	}
+
+	@RequestMapping(value="/100doorSwap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
+	public String get100doorSwapResult() {
+		DecisionEngineTemplate template = new DecisionEngineTemplate();
+		template.setNumberOfDoors(100);
+		template.setSwapping(true);
+		template.setNumberOfRounds(1);
+		
+		String message = "Aww, I'm sorry!  You lost!";
+		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
+		if (result == 1) {
+			message = "Congratulations!  You won!";
+		}
+		return message;
+	}
+	
+
+	@RequestMapping(value="/100doorSwap1000", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
+	public String get100doorSwap1000Result() {
+		DecisionEngineTemplate template = new DecisionEngineTemplate();
+		template.setNumberOfDoors(100);
+		template.setSwapping(true);
+		template.setNumberOfRounds(1000);
+		
+		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
+		String message = "You won " + result + " times out of 1000!";
+		return message;
+	}
 }
