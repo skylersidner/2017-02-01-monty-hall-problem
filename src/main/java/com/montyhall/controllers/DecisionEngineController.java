@@ -36,12 +36,8 @@ public class DecisionEngineController {
 		return new ResponseEntity<String>(message, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/template", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
+	@RequestMapping(value="/template", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON)
 	public ResponseEntity<String> getTemplateResult(@RequestBody DecisionEngineTemplate template) {
-//		DecisionEngineTemplate template = new DecisionEngineTemplate();
-//		template.setNumberOfDoors(numberOfDoors);
-//		template.setSwapping(isSwapping);
-//		template.setNumberOfRounds(numberOfRounds);
 		
 		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
 		String message = "You won " + result + " times out of " + template.getNumberOfRounds() + "!";
