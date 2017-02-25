@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.montyhall.domain.DecisionEngineDomainServiceImpl;
@@ -19,6 +20,20 @@ public class DecisionEngineController {
 	@Inject
 	DecisionEngineDomainServiceImpl decisionEngineDomainServiceImpl;
 
+
+	@RequestMapping(value="/params", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
+	public ResponseEntity<String> getParamsResult(@RequestParam(value = "numberOfDoors") Integer numberOfDoors, 
+			@RequestParam(value = "isSwapping") boolean isSwapping, @RequestParam(value = "numberOfRounds") Integer numberOfRounds) {
+		DecisionEngineTemplate template = new DecisionEngineTemplate();
+		template.setNumberOfDoors(numberOfDoors);
+		template.setSwapping(isSwapping);
+		template.setNumberOfRounds(numberOfRounds);
+		
+		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
+		String message = "You won " + result + " times out of " + numberOfRounds + "!";
+		return new ResponseEntity<String>(message, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value="/3doorStay", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
 	public ResponseEntity<String> get3doorStayResult() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
@@ -35,7 +50,7 @@ public class DecisionEngineController {
 	}
 	
 	@RequestMapping(value="/3doorStay100", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
-	public String get3doorStay100Result() {
+	public ResponseEntity<String> get3doorStay100Result() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
 		template.setNumberOfDoors(3);
 		template.setSwapping(false);
@@ -43,12 +58,12 @@ public class DecisionEngineController {
 		
 		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
 		String message = "You won " + result + " times out of 100!";
-		return message;
+		return new ResponseEntity<String>(message, HttpStatus.OK);
 	}
 	
 
 	@RequestMapping(value="/3doorStay1000", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
-	public String get3doorStay1000Result() {
+	public ResponseEntity<String> get3doorStay1000Result() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
 		template.setNumberOfDoors(3);
 		template.setSwapping(false);
@@ -56,11 +71,11 @@ public class DecisionEngineController {
 		
 		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
 		String message = "You won " + result + " times out of 1000!";
-		return message;
+		return new ResponseEntity<String>(message, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/3doorSwap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
-	public String get3doorSwapResult() {
+	public ResponseEntity<String> get3doorSwapResult() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
 		template.setNumberOfDoors(3);
 		template.setSwapping(true);
@@ -71,11 +86,12 @@ public class DecisionEngineController {
 		if (result == 1) {
 			message = "Congratulations!  You won!";
 		}
-		return message;
+
+		return new ResponseEntity<String>(message, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/3doorSwap100", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
-	public String get3doorSwap100Result() {
+	public ResponseEntity<String> get3doorSwap100Result() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
 		template.setNumberOfDoors(3);
 		template.setSwapping(true);
@@ -83,12 +99,13 @@ public class DecisionEngineController {
 		
 		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
 		String message = "You won " + result + " times out of 100!";
-		return message;
+
+		return new ResponseEntity<String>(message, HttpStatus.OK);
 
 	}
 	
 	@RequestMapping(value="/3doorSwap1000", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
-	public String get3doorSwap1000Result() {
+	public ResponseEntity<String> get3doorSwap1000Result() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
 		template.setNumberOfDoors(3);
 		template.setSwapping(true);
@@ -96,12 +113,12 @@ public class DecisionEngineController {
 		
 		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
 		String message = "You won " + result + " times out of 1000!";
-		return message;
-
+	
+		return new ResponseEntity<String>(message, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/100doorStay", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
-	public String get100doorStayResult() {
+	public ResponseEntity<String> get100doorStayResult() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
 		template.setNumberOfDoors(100);
 		template.setSwapping(false);
@@ -112,12 +129,13 @@ public class DecisionEngineController {
 		if (result == 1) {
 			message = "Congratulations!  You won!";
 		}
-		return message;
+
+		return new ResponseEntity<String>(message, HttpStatus.OK);
 	}
 	
 
 	@RequestMapping(value="/100doorStay1000", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
-	public String get100doorStay1000Result() {
+	public ResponseEntity<String> get100doorStay1000Result() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
 		template.setNumberOfDoors(100);
 		template.setSwapping(false);
@@ -125,11 +143,12 @@ public class DecisionEngineController {
 		
 		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
 		String message = "You won " + result + " times out of 1000!";
-		return message;
+
+		return new ResponseEntity<String>(message, HttpStatus.OK);
 	}
 
 	@RequestMapping(value="/100doorSwap", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
-	public String get100doorSwapResult() {
+	public ResponseEntity<String> get100doorSwapResult() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
 		template.setNumberOfDoors(100);
 		template.setSwapping(true);
@@ -140,12 +159,13 @@ public class DecisionEngineController {
 		if (result == 1) {
 			message = "Congratulations!  You won!";
 		}
-		return message;
+
+		return new ResponseEntity<String>(message, HttpStatus.OK);
 	}
 	
 
 	@RequestMapping(value="/100doorSwap1000", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
-	public String get100doorSwap1000Result() {
+	public ResponseEntity<String> get100doorSwap1000Result() {
 		DecisionEngineTemplate template = new DecisionEngineTemplate();
 		template.setNumberOfDoors(100);
 		template.setSwapping(true);
@@ -153,7 +173,8 @@ public class DecisionEngineController {
 		
 		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
 		String message = "You won " + result + " times out of 1000!";
-		return message;
+
+		return new ResponseEntity<String>(message, HttpStatus.OK);
 	}
 	
 }
