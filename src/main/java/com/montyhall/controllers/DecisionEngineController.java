@@ -5,6 +5,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,6 +35,33 @@ public class DecisionEngineController {
 		String message = "You won " + result + " times out of " + numberOfRounds + "!";
 		return new ResponseEntity<String>(message, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/template", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
+	public ResponseEntity<String> getTemplateResult(@RequestBody DecisionEngineTemplate template) {
+//		DecisionEngineTemplate template = new DecisionEngineTemplate();
+//		template.setNumberOfDoors(numberOfDoors);
+//		template.setSwapping(isSwapping);
+//		template.setNumberOfRounds(numberOfRounds);
+		
+		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
+		String message = "You won " + result + " times out of " + template.getNumberOfRounds() + "!";
+		return new ResponseEntity<String>(message, HttpStatus.OK);
+	}
+	
+	// this is a terrible example of purpose, but here for an example of execution; these are not nested path ids at all!
+	@RequestMapping(value="pathVariables/{numberOfDoors}/{isSwapping}/{numberOfRounds}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
+	public ResponseEntity<String> getPathVariableResult(@PathVariable Integer numberOfDoors, 
+			@PathVariable boolean isSwapping, @PathVariable Integer numberOfRounds) {
+		DecisionEngineTemplate template = new DecisionEngineTemplate();
+		template.setNumberOfDoors(numberOfDoors);
+		template.setSwapping(isSwapping);
+		template.setNumberOfRounds(numberOfRounds);
+		
+		int result = decisionEngineDomainServiceImpl.letsMakeADealFast(template);
+		String message = "You won " + result + " times out of " + numberOfRounds + "!";
+		return new ResponseEntity<String>(message, HttpStatus.OK);
+	}
+	
 	
 	@RequestMapping(value="/3doorStay", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON)
 	public ResponseEntity<String> get3doorStayResult() {
